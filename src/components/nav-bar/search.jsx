@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SearchAppBar() {
+export default function SearchAppBar(props) {
   const classes = useStyles();
 
   const [search,setSearch]=useState("")
@@ -57,6 +57,7 @@ export default function SearchAppBar() {
   }
 
   function keyPress(event){
+    props.search(event.keyCode)
       if(event.keyCode === 13){
         console.log('value', event.target.value);
         // put the login here
@@ -79,7 +80,9 @@ export default function SearchAppBar() {
               }}
               inputProps={{ 'aria-label': 'search' }}
             />
-          </div>
 
+            
+          </div>
+        
   );
 }

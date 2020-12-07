@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ButtonAppBar from './nav-bar/nav-bar'
 import Footer from "./Footer";
 import Note from "./Note";
-import CreateArea from "./CreateArea";
+import MainArea from "./MainArea";
 
 function App() {
 
@@ -22,16 +22,21 @@ function App() {
       })
     })
   }
+
+  function search(id){
+    console.log(id)
+    
+
+  }
   return (
     <div className="container">
- 
-     <ButtonAppBar count={notes.length}/>
-      <CreateArea onAdd={addNote} />
+     <ButtonAppBar search={search}  count={notes.length}/>
+     {/* <FindSearch/> */}
+      <MainArea onAdd={addNote} />
       {notes.map( (note,index)=>{
         return <Note onDelete={deleteNote} id={index} key={index} title={note.title} content={note.content} />
+
       })}
-    
-      
     <Footer />
     </div>
   );

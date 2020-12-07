@@ -13,13 +13,25 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(({
   root: {
-     maxWidth: 345,
-     margin: "10% auto"
+     maxWidth: 620,
+     margin: "10% auto",
+    
   },
   media: {        
-    height: 140,
+    height: 300,
   
   },
+  
+  Share:{        
+    color:'#33404F'
+  
+  },
+  Delete:{        
+    color:'#33404F'
+  
+  },
+
+
   })); 
 
 
@@ -30,36 +42,38 @@ function Note(props) {
   function deleteId(event){
     props.onDelete(props.id)
   }
-
+ 
   return (
     
     <Card  className={classes.root}>
 
       <CardActionArea>
+
         <CardMedia
           className={classes.media}
-          image="/static/images/cards/contemplative-reptile.jpg"
-          title="Contemplative Reptile"
-        />
+          image='' />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-          {props.title}
+            {props.title}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             {props.content}
           </Typography>
         </CardContent>
 
-
-
       </CardActionArea>
+
+
       <CardActions>
-        <Button size="small" color="primary">
+
+        <Button className={classes.Share} size="small" color="primary">
           Share
         </Button>
-        <Button onClick={deleteId} size="small" color="primary">
+
+        <Button className={classes.Delete} onClick={deleteId} size="small" color="primary">
          <DeleteIcon/>
         </Button>
+        
       </CardActions>
 
     </Card>

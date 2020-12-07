@@ -4,8 +4,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-
-
 import Badge from '@material-ui/core/Badge';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import Search from './search'
@@ -16,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     
   },
   bar: {
-    background : "#F5BA31"
+    background : "#6AE5AB"
     
   },
   menuButton: {
@@ -38,6 +36,10 @@ const useStyles = makeStyles((theme) => ({
 export default function ButtonAppBar(props) {
   const classes = useStyles();
 
+  function search(id){
+    props.search(id)
+  }
+
   return (
     <div className={classes.root}>
       <AppBar  position="static" className={classes.bar} >
@@ -47,7 +49,7 @@ export default function ButtonAppBar(props) {
           <Typography variant="h6" className={classes.title}>
             My Trip
           </Typography>
-          <Search/>
+          <Search search={search}/>
 
           <Button color="inherit">Login</Button>
 

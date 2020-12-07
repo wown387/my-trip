@@ -4,18 +4,12 @@
   box-sizing: border-box;
 }
 html {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Nerko One', cursive;
 }
 body {
   background: #eee;
 }
 
-
-header h1 {
-  color: #fff;
-  font-family: "McLaren", cursive;
-  font-weight: 200;
-}
 
 footer {
   position: relative;
@@ -84,7 +78,7 @@ form button {
   position: absolute;
   right: 18px;
   bottom: -18px;
-  background: #f5ba13;
+  background: #6AE5AB;
   color: #fff;
   border: none;
   border-radius: 50%;
@@ -95,5 +89,16 @@ form button {
   outline: none;
   
 }
+
 form button:hover{background-color:orange;}
 form button:active {background-color:wheat;}
+
+@media only screen and (max-width:700px) {
+  /* For mobile phones: */
+  form  {
+    width:70%;
+  }
+  .makeStyles-root-10{
+    width:80%;
+  }
+}
