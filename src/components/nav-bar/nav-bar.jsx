@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import Badge from '@material-ui/core/Badge';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import Search from './search'
@@ -44,15 +43,10 @@ export default function ButtonAppBar(props) {
     <div className={classes.root}>
       <AppBar  position="static" className={classes.bar} >
         <Toolbar>
-
-
           <Typography variant="h6" className={classes.title}>
             My Trip
           </Typography>
           <Search search={search}/>
-
-          <Button color="inherit">Login</Button>
-
           <Badge badgeContent={props.count} color="secondary" className={classes.badge} >
             <EventNoteIcon />
           </Badge>

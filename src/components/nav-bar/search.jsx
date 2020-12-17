@@ -58,9 +58,20 @@ export default function SearchAppBar(props) {
   }
 
   function keyPress(event){
-    
+    var regExp = /[A-Za-z0-9]/;
+
       if(event.keyCode === 13){
-        props.search(search)
+        if(regExp.test(search)){
+          console.log("asdf")
+          props.search(search)
+          setSearch("")
+        }
+        else{
+          alert('please input english')
+
+        }
+
+        
         // put the login here
      }
   }
@@ -74,7 +85,7 @@ export default function SearchAppBar(props) {
               onKeyDown={keyPress}
               value={search}
               onChange={handleChange}
-              placeholder="Search…"
+              placeholder="input city name"
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,

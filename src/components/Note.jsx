@@ -37,27 +37,22 @@ const useStyles = makeStyles(({
 function Note(props) {
 
   const [data, setData] = useState([]);
-
-
   useEffect(() => {
     
-    if (props.title){
+    if (props.keyword){
       axios
-      .get("https://api.openweathermap.org/data/2.5/weather?q="+props.title+"&appid=b61ed55fcf58bf6647be8ab97338369c&units=metric")
+      .get("https://api.openweathermap.org/data/2.5/weather?q="+props.keyword+"&appid=b61ed55fcf58bf6647be8ab97338369c&units=metric")
       .then(response =>{
-        console.log(response.data.weather[0].description)
         setData([response.data.main.temp,
           response.data.weather[0].description,
-          "http://openweathermap.org/img/wn/"+response.data.weather[0].icon+"@2x.png"]
+          "http://openweathermap.org/img/wn/"+response.data.weather[0].icon+"@2x.png",
+          response.data.sys.country]
           )
       } 
-        
-        
       );
-    
     }
     
-  }, [props.title]);
+  }, [props.keyword]);
 
   
 
@@ -65,9 +60,9 @@ function Note(props) {
 
   function deleteId(event){
     props.onDelete(props.id)
+  
     
   }
- 
   return (
     
     <Card  className={classes.root}>
@@ -75,13 +70,13 @@ function Note(props) {
       <CardActionArea>
       <CardMedia
         className={classes.media}
-        image="https://source.unsplash.com/random"
+        image={props.image}
         title="Paella dish"
       />
        
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {props.title}
+            {props.keyword}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             {props.content}
@@ -89,19 +84,11 @@ function Note(props) {
         </CardContent>
 
       </CardActionArea>
-
-
       <CardActions>
 
-        <Button className={classes.Share} size="small" color="primary" startIcon={<Avatar src={data[2]} />}>
-          
-          {data[1]}
-          <br></br>
-          {data[0]}℃
-
-          
+        <Button className={classes.Share} size="small" color="primary" startIcon={data.length ?<Avatar src={data[2]}/>:""}>
+        { data.length ? <div> {data[1]}<br></br> {data[0]}℃ {data[3]} </div>:<div></div> }
         </Button>
-        
         <Button className={classes.Delete} onClick={deleteId} size="small" color="primary">
          <DeleteIcon/>
         </Button>
