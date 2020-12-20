@@ -27,7 +27,10 @@ function MainArea(props) {
 
     }
     else{
-      console.log(note)
+      var check_eng = /[a-zA-Z]/;
+      if(check_eng.test(note.keyword)===false){
+        alert('한글로 입력 할 경우 날짜 정보가 나오지 않습니다')
+      }
       event.preventDefault()
       props.onAdd(note)
     

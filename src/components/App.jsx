@@ -5,9 +5,8 @@ import Footer from "./Footer";
 import Note from "./Note";
 import MainArea from "./MainArea";
 import Grid from '@material-ui/core/Grid';
-import Album from './nav-bar/Album';
-import SearchBar from './SearchBar'
-// import  PinnedSubheaderList from './nav-bar/FindSearch'
+import Album from './search/Album';
+import SearchBar from './search/SearchBar'
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -19,7 +18,6 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
 
-
   const classes = useStyles();
   const [notes,setNotes]=useState([])
   const [isSearch,setIsSearch]=useState(0)
@@ -27,11 +25,7 @@ function App() {
   const [keyword,setKeyword]=useState("")
   const [imgsrc,setImagesrc]=useState("")
   const [descrip,setDescrip]=useState("")
-
-  // The useEffect() hook fires any time that the component is rendered.
-  // An empty array is passed as the second argument so that the effect only fires once.
-
-
+  // 노트 생성
   function addNote(NewNote){
     
     setIselect(0)
@@ -39,7 +33,7 @@ function App() {
       return [...prev,NewNote]
     })
   }
-
+  // 노트 삭제
   function deleteNote(id){
 
     setNotes(prev=>{
@@ -48,25 +42,28 @@ function App() {
       })
     })
   }
+  // MainArea에서 검색값 받아서 저장
 
   function search(keyword){
     setIsSearch(1)
     setKeyword(keyword)
 
   }
+   // Album 에서 이미지 소스값 받아서 저장 
 
   function selectImage(image){
     setIsSearch(0)
     setImagesrc(image)
     setIselect(true)
   }
+  // 이미지 데이터 못받을 시
   function iscorrect(album){
     if (album.length===0){
       setIsSearch(2)
     }
   }
+  // 이미지 설명 값 저장
   function handledescrip(descrip){
-    console.log(descrip,111)
     setDescrip(descrip)
   }
 

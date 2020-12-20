@@ -39,8 +39,8 @@ function Note(props) {
 
   const [data, setData] = useState([]);
   useEffect(() => {
-    
-    if (props.keyword){
+    var check_eng = /[a-zA-Z]/;
+    if (check_eng.test(props.keyword)){
       axios
       .get("https://api.openweathermap.org/data/2.5/weather?q="+props.keyword+"&appid=b61ed55fcf58bf6647be8ab97338369c&units=metric")
       .then(response =>{
