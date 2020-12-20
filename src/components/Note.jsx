@@ -14,6 +14,7 @@ const useStyles = makeStyles(({
   root: {
      width: 300,
      margin: "10% auto", 
+     fontfamily: 'sans-serif'
 
   },
   media: {        
@@ -73,13 +74,13 @@ function Note(props) {
         image={props.image}
         title="Paella dish"
       />
-       
+     
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {props.keyword}
+          <Typography fontFamily= "sans-serif" gutterBottom variant="h5" component="h2">
+            <div><h3>{props.keyword}</h3></div>
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {props.content}
+           {props.content}
           </Typography>
         </CardContent>
 

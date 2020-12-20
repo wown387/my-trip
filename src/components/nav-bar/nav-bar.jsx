@@ -5,7 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Badge from '@material-ui/core/Badge';
 import EventNoteIcon from '@material-ui/icons/EventNote';
-import Search from './search'
+import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     
   },
   bar: {
-    background : "#6AE5AB"
+    background : "#f5ba13"
     
   },
   menuButton: {
@@ -26,6 +26,9 @@ const useStyles = makeStyles((theme) => ({
   },
   badge:{
   margin: theme.spacing(1),
+  },
+  icon:{
+    margin:"5px"
   }
 
 }));
@@ -35,18 +38,16 @@ const useStyles = makeStyles((theme) => ({
 export default function ButtonAppBar(props) {
   const classes = useStyles();
 
-  function search(id){
-    props.search(id)
-  }
 
   return (
     <div className={classes.root}>
       <AppBar  position="static" className={classes.bar} >
         <Toolbar>
+          <FlightTakeoffIcon className={classes.icon} fontSize="large" />
           <Typography variant="h6" className={classes.title}>
-            My Trip
+            My Trip Diary
           </Typography>
-          <Search search={search}/>
+         
           <Badge badgeContent={props.count} color="secondary" className={classes.badge} >
             <EventNoteIcon />
           </Badge>

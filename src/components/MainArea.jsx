@@ -6,29 +6,23 @@ function MainArea(props) {
   const [note,setNote]=useState({
     keyword:"",
     content:"",
-    image:""
+    image:"",
+    descrip:""
+  
   })
 
   function handleChane(event){
     const {name,value } =event.target
+  
     setNote(prev=>{
-      return {...prev,keyword:props.keyword}
+      return {...prev,[name]:value,image:props.image,keyword:props.keyword,descrip:props.descrip}
     })
-
-    setNote(prev=>{
-      return {...prev,[name]:value}
-    })
-    setNote(prev=>{
-      return {...prev,image:props.image}
-    })
-
 
   }
-
   function submit(event){
     
     if (note.image===""){
-      alert('이미지 혹은 내용을 입력해주세요')
+      alert('노트에  내용을 입력해주세요')
       event.preventDefault()
 
     }
@@ -40,19 +34,21 @@ function MainArea(props) {
       setNote({  
         keyword:"",
         content:"",
-        image:""})
-
+        image:"",
+        descrip:""})
+        
     }
    
     
   }
-
-
   return (
-    <div>
+    <div className="MainArea">
       <form>
-        <h1>{props.keyword}</h1>
-        <textarea name="content" value={note.content} onChange={handleChane} placeholder="Take a note..." rows="3" />
+        <div className="sample">
+        <img src={props.image} alt="note"></img> 
+        <div><h1>{props.keyword}</h1><p>{props.descrip}</p></div> 
+        </div>
+         <textarea  name="content" value={note.content} onChange={handleChane} placeholder="take a note..." rows="3"/>
         <button onClick={submit}><AddIcon/></button>
       </form>
     </div>

@@ -63,7 +63,9 @@ export default function Album(props) {
   const classes = useStyles();
 
   function selectImage(event){
+    
     props.selectImage(event.target.title)
+    props.descrip(event.target.id)
 
   }
   return (
@@ -74,12 +76,13 @@ export default function Album(props) {
           <Grid container spacing={4}>
           {data.map((data,index) => (
               <Grid item key={index} xs={12} sm={6} md={4}>
-                <Card className={classes.card}>
+                <Card className={classes.card} name={data.alt_description}>
                 <CardActionArea onClick={selectImage} >
                   <CardMedia
                     className={classes.cardMedia}
                     image={data.urls.small}
                     title={data.urls.small}
+                    id={data.alt_description}
                   />
                   </CardActionArea>
                   <CardActions>
