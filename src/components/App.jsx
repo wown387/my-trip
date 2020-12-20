@@ -6,8 +6,12 @@ import Note from "./Note";
 import MainArea from "./MainArea";
 import Grid from '@material-ui/core/Grid';
 import Album from './search/Album';
-import SearchBar from './search/SearchBar'
-const useStyles = makeStyles((theme) => ({
+import SearchBar from './search/SearchBar';
+import {BrowserRouter as Router,Switch,Route} 
+from "react-router-dom";
+import Portfolio from './portfolio'
+
+const useStyles = makeStyles((theme) => ({ 
   root: {
     flexGrow: 1,
   },
@@ -68,11 +72,19 @@ function App() {
   }
 
   return (
+    <Router>
+     
     <div className="container">
+    <Switch>
+    <Route path='/about'>
+      <ButtonAppBar search={search}  count={notes.length}/>
+      <Portfolio className="portfolio"/>
+      </Route>
+      <Route path="/">
      <ButtonAppBar search={search}  count={notes.length}/>
      { isSearch===1 && <Album iscorrect={iscorrect} selectImage={selectImage} descrip={handledescrip}keyword={keyword}/>}
      {isSearch===2 &&<h1>Can Not found image</h1>}
-     {isSelect ? <div></div>: <SearchBar search={search}/> }
+     {isSelect ? <div></div>: <SearchBar  search={search}/> }
      {isSelect  ? <MainArea onAdd={addNote} descrip={descrip} image={imgsrc} keyword={keyword}/>:<div></div>}
       <Grid container className={classes.root} spacing={2}>
       {notes.map( (note,index)=>{
@@ -80,11 +92,13 @@ function App() {
 
       })}
       </Grid>
-      
-      
       <Footer />
-    
+      </Route>
+
+      
+      </Switch>
     </div>
+    </Router>
   );
 }
 

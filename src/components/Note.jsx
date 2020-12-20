@@ -98,11 +98,6 @@ function Note(props) {
 
     </Card>
 
-    /* 
-      <h1></h1>
-      <p></p>
-      <button onClick={deleteId}></button>
-     */
   );
 }
 

@@ -43,9 +43,12 @@ export default function ButtonAppBar(props) {
     <div className={classes.root}>
       <AppBar  position="static" className={classes.bar} >
         <Toolbar>
-          <FlightTakeoffIcon className={classes.icon} fontSize="large" />
-          <Typography variant="h6" className={classes.title}>
-            My Trip Diary
+        <a style={{color:"white"}}  href={'/'}> <FlightTakeoffIcon className={classes.icon} fontSize="large" /></a>
+         <Typography variant="h6" className={classes.title}>
+         <a style={{color:"white",textDecoration:"none"}}  href={'/'}> My Trip Diary</a>
+          </Typography>
+           <Typography variant="h6" >
+           <a style={{color:"white",textDecoration:"none"}} href={'/about'}>Me</a>
           </Typography>
          
           <Badge badgeContent={props.count} color="secondary" className={classes.badge} >

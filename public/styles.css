@@ -96,6 +96,14 @@ form button {
   float: left;
   margin-right: 10px;
 }
+.portfolio {
+  padding: 20px;
+}
+.portfolio img{
+  width: 300px;
+  float: left;
+  padding: 50px;
+}
 
 
 
@@ -109,5 +117,13 @@ form button:active {background-color:orange;}
   }
   .makeStyles-root-10{
     width:80%;
+  }
+
+  .portfolio img{
+    padding: 10px;
+    width: 130px;
+    margin-right: 10px;
+    margin-bottom: 300px;
+    
   }
 }
