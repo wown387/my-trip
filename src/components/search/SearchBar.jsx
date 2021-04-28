@@ -55,7 +55,10 @@ export default function UseAutocomplete(props) {
       console.log();
       event.preventDefault();
       props.search(event.target.value);
-    } else {
+      setKey(event.target.value);
+    } else if (event.keyCode === 13 && event.target.value) {
+      event.preventDefault();
+      props.search(event.target.value);
       setKey(event.target.value);
     }
   }
