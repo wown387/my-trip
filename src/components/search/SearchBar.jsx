@@ -2,7 +2,7 @@ import useAutocomplete from "@material-ui/lab/useAutocomplete";
 import top100Films from "./SearchData";
 import SearchIcon from "@material-ui/icons/Search";
 import { makeStyles } from "@material-ui/core/styles";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 const useStyles = makeStyles((theme) => ({
   SearchIcon: {
     marginTop: 8,
@@ -43,25 +43,29 @@ const useStyles = makeStyles((theme) => ({
 
 export default function UseAutocomplete(props) {
   const classes = useStyles();
-
+  const textInput = useRef(null);
   const [key, setKey] = useState("");
 
   function keyPress(event) {
-    if (
-      event.keyCode === 13 &&
-      event.target.value &&
-      groupedOptions.length == 0
-    ) {
-      console.log();
+    if (event.keyCode === 13 && event.target.value) {
       event.preventDefault();
       props.search(event.target.value);
       setKey(event.target.value);
     } else if (event.keyCode === 13 && event.target.value) {
       event.preventDefault();
-      props.search(event.target.value);
+      // props.search(event.target.value);
       setKey(event.target.value);
+      console.log(1515);
+      console.log(getInputProps().ref.current.value);
+      // props.search(event.target.value);
     }
+    console.log(textInput.current);
   }
+  const handleClick = (event) => {
+    console.log(key);
+    event.preventDefault();
+    props.search(key);
+  };
   const {
     getRootProps,
     getInputProps,
@@ -75,20 +79,27 @@ export default function UseAutocomplete(props) {
       return option.title;
     },
   });
-
+  const handleChange = (e) => {
+    e.preventDefault();
+    setKey(e.target.value);
+  };
   return (
     <div>
       <form>
-        <div {...getRootProps()}>
+        {/* <div {...getRootProps()}> */}
+        <div style={{ cursor: "pointer" }} onClick={handleClick}>
           <SearchIcon className={classes.SearchIcon} />
-          <input
-            className={classes.input}
-            onKeyDown={keyPress}
-            placeholder="search city name"
-            {...getInputProps()}
-          />
         </div>
-        {groupedOptions.length > 0 ? (
+        <input
+          value={key}
+          onChange={handleChange}
+          className={classes.input}
+          onKeyDown={keyPress}
+          placeholder="search city name"
+          // {...getInputProps()}
+        />
+        {/* </div> */}
+        {/* {groupedOptions.length > 0 ? (
           <ul className={classes.listbox} {...getListboxProps()}>
             {groupedOptions
               .filter(
@@ -97,10 +108,21 @@ export default function UseAutocomplete(props) {
                   option.title.slice(1, key.length + 1).toLowerCase()
               )
               .map((option, index) => (
-                <li {...getOptionProps({ option, index })}> {option.title} </li>
+                <div key={index}>
+                  {" "}
+                  <li
+                    ref={textInput}
+                    name={option.title}
+                    className={index}
+                    {...getOptionProps({ option, index })}
+                  >
+                    {" "}
+                    {option.title} 11
+                  </li>
+                </div>
               ))}
           </ul>
-        ) : null}
+        ) : null} */}
       </form>
     </div>
   );
